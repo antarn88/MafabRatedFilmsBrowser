@@ -1,1 +1,5 @@
-<p>home works!</p>
+<div class="card-container mt-5 d-flex flex-wrap justify-content-around col-10 offset-1">
+  <app-film-card [film]="film" *ngFor="let film of filmList | async | slice:startHits:5"></app-film-card>
+</div>
+
+<app-pagination *ngIf="(filmList | async | slice:startHits:endHits)?.length" [hitsLength]="(filmList | async | slice:startHits:endHits)?.length" (startHits)="setStartHits($event)" (endHits)="setEndHits($event)"></app-pagination>

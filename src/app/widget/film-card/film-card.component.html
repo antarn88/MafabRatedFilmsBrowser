@@ -1,1 +1,7 @@
-<p>film-card works!</p>
+<div class="card mb-4" style="width: 18rem;">
+  <img src="{{ film.poster }}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{ film.name }} ({{ film.year }})</h5>
+    <p class="card-text">{{ film.description }}</p>
+  </div>
+</div>
