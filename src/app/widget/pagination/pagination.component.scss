@@ -1,0 +1,7 @@
+li {
+  user-select: none;
+  cursor: pointer;
+  &.disabled {
+    cursor: not-allowed;
+  }
+}

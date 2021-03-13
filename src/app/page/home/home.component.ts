@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Film } from 'src/app/model/film';
-import { ConfigService } from 'src/app/service/config.service';
+import { PaginationInfo } from 'src/app/model/pagination-info';
 import { FilmService } from 'src/app/service/film.service';
-
 
 @Component({
   selector: 'app-home',
@@ -12,25 +11,25 @@ import { FilmService } from 'src/app/service/film.service';
 })
 export class HomeComponent implements OnInit {
 
-  filmList: BehaviorSubject<Film[]> = this.filmService.list$;
-  startHits = this.configService.startHits;
-  endHits = this.configService.endHits;
-  
-  constructor(
-    private filmService: FilmService,
-    private configService: ConfigService) { }
+  list$: BehaviorSubject<Film[]> = this.filmService.list$;
+  filmList: Film[] = [];
+  paginationInfo: PaginationInfo = new PaginationInfo(10);
+
+  constructor(private filmService: FilmService) { }
 
   ngOnInit(): void {
     this.filmService.getAll();
+    this.list$.subscribe(
+      list => {
+        this.filmList = list;
+        this.paginationInfo.listLength = list.length;
+      }
+    );
   }
 
-  setStartHits(startHits: number): void {
-    this.startHits = startHits;
+  setHitsInterval(intervals: any): void {
+    this.paginationInfo.startHits = intervals.startHits;
+    this.paginationInfo.endHits = intervals.endHits;
   }
-
-  setEndHits(endHits: number): void {
-    this.endHits = endHits;
-  }
- 
 
 }
