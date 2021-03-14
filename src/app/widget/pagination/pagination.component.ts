@@ -12,18 +12,25 @@ export class PaginationComponent implements OnInit {
 
   pages: number[] = [];
   firstPage: number = 1;
+  currentPage: number = 1;
   lastPage: number = 1;
+  lastPageAbsolute: number = 1;
+  pageStart: number = 1;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.setLastPageAbsolute();
     this.setPageArray();
     this.setInitialStatus();
   }
 
+  setLastPageAbsolute(): void {
+    this.lastPageAbsolute = Math.ceil(this.paginationInfo.listLength / this.paginationInfo.hitsPerPage);
+  }
+
   setPageArray(): void {
-    this.lastPage = Math.ceil(this.paginationInfo.listLength / this.paginationInfo.hitsPerPage);
-    for (let i = 1; i <= this.lastPage; i++) {
+    for (let i = 1; i <= 10; i++) {
       this.pages.push(i);
     }
   }
@@ -37,7 +44,17 @@ export class PaginationComponent implements OnInit {
     }
   }
 
+  renderPaginator(page: number): void {
+    this.currentPage = page;
+    this.pageStart = (page - 5) < 1 ? 1 : (page - 5);
+    this.pages = [];
+    for (let i = this.pageStart; i < this.pageStart + 10 && i <= this.lastPageAbsolute; i++) {
+      this.pages.push(i);
+    }
+  }
+
   onClickListItem(page: number): void {
+    this.renderPaginator(page);
     let startHits;
     let endHits;
 
