@@ -8,6 +8,7 @@ import { NavbarComponent } from './widget/navbar/navbar.component';
 import { HomeComponent } from './page/home/home.component';
 import { FilmCardComponent } from './widget/film-card/film-card.component';
 import { PaginationComponent } from './widget/pagination/pagination.component';
+import { FilterPipe } from './pipe/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { PaginationComponent } from './widget/pagination/pagination.component';
     NavbarComponent,
     HomeComponent,
     FilmCardComponent,
-    PaginationComponent
+    PaginationComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

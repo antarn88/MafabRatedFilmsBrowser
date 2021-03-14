@@ -14,8 +14,11 @@ export class HomeComponent implements OnInit {
   list$: BehaviorSubject<Film[]> = this.filmService.list$;
   filmList: Film[] = [];
   paginationInfo: PaginationInfo = new PaginationInfo(10);
-
-  constructor(private filmService: FilmService) { }
+  phrase: string = '';
+  
+  constructor(
+    private filmService: FilmService
+  ) { }
 
   ngOnInit(): void {
     this.filmService.getAll();
@@ -30,6 +33,10 @@ export class HomeComponent implements OnInit {
   setHitsInterval(intervals: any): void {
     this.paginationInfo.startHits = intervals.startHits;
     this.paginationInfo.endHits = intervals.endHits;
+  }
+
+  onChangePhrase(event: Event): void {
+    this.phrase = (event.target as HTMLInputElement).value;
   }
 
 }
