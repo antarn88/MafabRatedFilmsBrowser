@@ -14,7 +14,6 @@ export class PaginationComponent implements OnInit {
   firstPage: number = 1;
   currentPage: number = 1;
   lastPage: number = 1;
-  lastPageAbsolute: number = 1;
   pageStart: number = 1;
 
   constructor() { }
@@ -22,39 +21,47 @@ export class PaginationComponent implements OnInit {
   ngOnInit(): void {
     this.setLastPageAbsolute();
     this.setPageArray();
-    this.setInitialStatus();
+  }
+
+  setNthPageActive(page: number): void {
+    const allPages = Array.from(document.querySelectorAll('li.page'));
+    allPages.map(pageLiItem => {
+      const aTextContent = pageLiItem.querySelector('a')?.textContent;
+      pageLiItem.classList.remove('active');
+      String(page) === aTextContent ? pageLiItem.classList.add('active') : null;
+    });
   }
 
   setLastPageAbsolute(): void {
-    this.lastPageAbsolute = Math.ceil(this.paginationInfo.listLength / this.paginationInfo.hitsPerPage);
+    this.lastPage = Math.ceil(this.paginationInfo.listLength / this.paginationInfo.hitsPerPage);
   }
 
   setPageArray(): void {
-    for (let i = 1; i <= 10; i++) {
+    const initialPageCount = this.lastPage < 10 ? this.lastPage : 10;
+    for (let i = 1; i <= initialPageCount; i++) {
       this.pages.push(i);
     }
   }
 
-  setInitialStatus(): void {
-    if (this.firstPage === this.lastPage) {
-      const previousLiItem = document.querySelector('.previous');
-      const nextLiItem = document.querySelector('.next');
-      previousLiItem?.classList.add('disabled');
-      nextLiItem?.classList.add('disabled');
+  removeActiveClassFromFirstPage(): void {
+    if (this.pages.find(page => page === 1) && this.currentPage !== 1) {
+      setTimeout(() => {
+        this.setNthPageActive(this.currentPage);
+      }, 50);
     }
   }
 
-  renderPaginator(page: number): void {
-    this.currentPage = page;
-    this.pageStart = (page - 5) < 1 ? 1 : (page - 5);
+  renderPaginator(): void {
     this.pages = [];
-    for (let i = this.pageStart; i < this.pageStart + 10 && i <= this.lastPageAbsolute; i++) {
+    this.pageStart = (this.currentPage - 5) < 1 ? 1 : (this.currentPage - 5);
+    for (let i = this.pageStart; i < this.pageStart + 10 && i <= this.lastPage; i++) {
       this.pages.push(i);
     }
   }
 
   onClickListItem(page: number): void {
-    this.renderPaginator(page);
+    this.currentPage = page;
+    this.renderPaginator();
     let startHits;
     let endHits;
 
@@ -68,18 +75,14 @@ export class PaginationComponent implements OnInit {
 
     this.hitsInterval.emit({ startHits: startHits, endHits: endHits });
 
-    const allPages = Array.from(document.querySelectorAll('li.page'));
-    allPages.map(pageLiItem => {
-      const aTextContent = pageLiItem.querySelector('a')?.textContent;
-      pageLiItem.classList.remove('active');
-      String(page) === aTextContent ? pageLiItem.classList.add('active') : null;
-    });
-
     const previousLiItem = document.querySelector('.previous');
     const nextLiItem = document.querySelector('.next');
 
     page === this.firstPage ? previousLiItem?.classList.add('disabled') : previousLiItem?.classList.remove('disabled');
     page === this.lastPage ? nextLiItem?.classList.add('disabled') : nextLiItem?.classList.remove('disabled');
+
+    this.removeActiveClassFromFirstPage();
+    this.setNthPageActive(page);
   }
 
   goPreviousPage(): void {
