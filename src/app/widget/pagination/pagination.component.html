@@ -1,12 +1,12 @@
 <ul class="pagination justify-content-center flex-wrap my-5">
-  <li class="page-item previous disabled" (click)="goPreviousPage()">
+  <li class="page-item previous disabled mb-2" (click)="goPreviousPage()">
     <a class="page-link" aria-disabled="true">Előző</a>
   </li>
-  <li class="page-item page" *ngFor="let page of pages" (click)="onClickListItem(page)"
+  <li class="page-item page mb-2" *ngFor="let page of pages" (click)="onClickListItem(page)"
     [ngClass]="page === 1 ? 'active' : ''">
     <a class="page-link">{{ page }}</a>
   </li>
-  <li class="page-item next" (click)="goNextPage()">
+  <li class="page-item next mb-2" (click)="goNextPage()">
     <a class="page-link">Következő</a>
   </li>
 </ul>
