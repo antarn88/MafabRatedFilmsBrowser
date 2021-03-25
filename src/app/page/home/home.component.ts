@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Film } from 'src/app/model/film';
-import { PaginationInfo } from 'src/app/model/pagination-info';
 import { FilmService } from 'src/app/service/film.service';
+import { PaginatorService } from 'src/app/service/paginator.service';
 
 @Component({
   selector: 'app-home',
@@ -13,11 +13,11 @@ export class HomeComponent implements OnInit {
 
   list$: BehaviorSubject<Film[]> = this.filmService.list$;
   filmList: Film[] = [];
-  paginationInfo: PaginationInfo = new PaginationInfo(10);
   phrase: string = '';
   
   constructor(
-    private filmService: FilmService
+    private filmService: FilmService,
+    public paginator: PaginatorService
   ) { }
 
   ngOnInit(): void {
@@ -25,14 +25,8 @@ export class HomeComponent implements OnInit {
     this.list$.subscribe(
       list => {
         this.filmList = list;
-        this.paginationInfo.listLength = list.length;
       }
     );
-  }
-
-  setHitsInterval(intervals: any): void {
-    this.paginationInfo.startHits = intervals.startHits;
-    this.paginationInfo.endHits = intervals.endHits;
   }
 
   onChangePhrase(event: Event): void {

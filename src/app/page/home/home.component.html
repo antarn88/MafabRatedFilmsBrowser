@@ -2,9 +2,9 @@
   <input type="text" class="form-control" placeholder="Keresés a film címekben" (keyup)="onChangePhrase($event)">
 </div>
 <div class="card-container mt-5 d-flex flex-wrap justify-content-around col-10 offset-1">
-  <app-film-card [film]="film" *ngFor="let film of list$ | async | filter:phrase | slice:paginationInfo.startHits:paginationInfo.endHits">
+  <app-film-card [film]="film" *ngFor="let film of list$ | async | filter:phrase |slice:paginator.startHits:paginator.endHits">
   </app-film-card>
 </div>
 <div *ngIf="(list$ | async)?.length" class="container">
-  <app-pagination [paginationInfo]="paginationInfo" (hitsInterval)="setHitsInterval($event)"></app-pagination>
+  <app-pagination [hitsPerPage]="10"></app-pagination>
 </div>
