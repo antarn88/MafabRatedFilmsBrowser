@@ -12,9 +12,8 @@ import { PaginatorService } from 'src/app/service/paginator.service';
 export class HomeComponent implements OnInit {
 
   list$: BehaviorSubject<Film[]> = this.filmService.list$;
-  filmList: Film[] = [];
   phrase: string = '';
-  
+
   constructor(
     private filmService: FilmService,
     public paginator: PaginatorService
@@ -22,11 +21,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.filmService.getAll();
-    this.list$.subscribe(
-      list => {
-        this.filmList = list;
-      }
-    );
   }
 
   onChangePhrase(event: Event): void {

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { PaginatorService } from 'src/app/service/paginator.service';
 
 @Component({
@@ -6,16 +6,6 @@ import { PaginatorService } from 'src/app/service/paginator.service';
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss']
 })
-export class PaginationComponent implements OnInit {
-
-  @Input() hitsPerPage: number = 0;
-  @Output() hitsInterval: EventEmitter<{}> = new EventEmitter();
-  
-  constructor(
-    public paginator: PaginatorService
-  ) { }
-
-  ngOnInit(): void {
-  }
-  
+export class PaginationComponent {
+  constructor(public paginator: PaginatorService) { }
 }

@@ -4,18 +4,22 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class PaginatorService {
-  listLength: number = 0;
+
+  /* SET HITS PER PAGE */
   hitsPerPage: number = 10;
+  /* ============= */
+
+  listLength: number = 0;
   startHits: number = 0;
   endHits: number = 0;
-  lastPage: number = 0;
+  firstPage: number = 1;
+  lastPage: number = 1;
   initialPageCount: number = 0;
   currentPage: number = 0;
   pageStart: number = 0;
-  firstPage: number = 0;
   pages: number[] = [];
 
-  constructor() { 
+  constructor() {
     this.endHits = this.startHits + this.hitsPerPage;
   }
 
@@ -89,9 +93,40 @@ export class PaginatorService {
     }
   }
 
-  goNextPage(): void {
-    const currentPage = Number(document.querySelector('li.page.active a')?.textContent);
-    currentPage !== this.lastPage ? this.onClickListItem(currentPage + 1) : null;
+  goNextPage(event: Event): void {
+    if (!(event.target as HTMLElement).classList.contains('disabled')) {
+      const currentPage = Number(document.querySelector('li.page.active a')?.textContent);
+      currentPage !== this.lastPage ? this.onClickListItem(currentPage + 1) : null;
+    }
   }
 
+  setPreviousAndNextButtonState(): void {
+    const previousButton = document.querySelector(".page-item.previous");
+    const nextButton = document.querySelector(".page-item.next");
+
+    if (this.firstPage === this.lastPage) {
+      previousButton?.classList.add('disabled');
+      nextButton?.classList.add('disabled');
+    }
+    else {
+      previousButton?.classList.remove('disabled');
+      nextButton?.classList.remove('disabled');
+    }
+    if (this.firstPage === 1 || this.lastPage === 0) {
+      previousButton?.classList.add('disabled');
+    }
+    if (this.lastPage === 0 || this.lastPage === 1) {
+      nextButton?.classList.add('disabled');
+    }
+  }
+
+  methodForFilter(): void {
+    this.pages = [];
+    this.startHits = 0;
+    this.endHits = this.hitsPerPage;
+    this.setNthPageActive(1);
+    this.setLastPageAbsolute();
+    this.setPageArray();
+    this.setPreviousAndNextButtonState();
+  }
 }
