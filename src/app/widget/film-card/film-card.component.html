@@ -3,7 +3,9 @@
     <img src="{{ film.poster }}" class="card-img-top" alt="Film poster">
   </a>
   <div class="card-body">
-    <h5 class="card-title">{{ film.name }} ({{ film.year }})</h5>
+    <h5 class="card-title">{{ film.name }} 
+      <span *ngIf="film.year !== 0">({{ film.year }})</span>
+    </h5>
     <div class="film-stars">
       <i class="fa fa-thumbs-down stars-0" *ngIf="starsArray.length === 0"> Nézhetetlen</i>
       <span *ngFor="let stars of starsArray">
