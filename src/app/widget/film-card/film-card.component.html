@@ -1,7 +1,19 @@
 <div class="card mb-4" style="width: 18rem;">
-  <img src="{{ film.poster }}" class="card-img-top" alt="...">
+  <a href="{{ film.url }}" target="_blank">
+    <img src="{{ film.poster }}" class="card-img-top" alt="Film poster">
+  </a>
   <div class="card-body">
     <h5 class="card-title">{{ film.name }} ({{ film.year }})</h5>
-    <p class="card-text">{{ film.description }}</p>
+    <div class="film-stars">
+      <i class="fa fa-thumbs-down stars-0" *ngIf="starsArray.length === 0"> Nézhetetlen</i>
+      <span *ngFor="let stars of starsArray">
+        <i class="fa fa-star" [class.stars-1]="starsArray.length === 1" [class.stars-2]="starsArray.length === 2"
+          [class.stars-3]="starsArray.length === 3" [class.stars-4]="starsArray.length === 4"
+          [class.stars-5]="starsArray.length === 5"></i>
+      </span>
+    </div>
+    <div class="genres mt-2">
+      <span>{{ genres }}</span>
+    </div>
   </div>
 </div>

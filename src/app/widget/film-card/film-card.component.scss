@@ -1,8 +1,28 @@
-.card-text {
-    word-wrap: break-word;
-    width: 250px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+i {
+  font-size: 1.2rem;
+  margin-right: 0.05rem;
+}
 
+.stars-0 {
+  color: rgb(94, 15, 15);
+}
+
+.stars-1 {
+  color: rgb(220, 14, 14);
+}
+
+.stars-2 {
+  color: rgb(255, 132, 0);
+}
+
+.stars-3 {
+  color: rgb(255, 226, 3);
+}
+
+.stars-4 {
+  color: rgb(152, 202, 26);
+}
+
+.stars-5 {
+  color: rgb(41, 164, 54);
 }
