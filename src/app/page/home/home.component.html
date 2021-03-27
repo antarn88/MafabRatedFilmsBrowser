@@ -1,8 +1,16 @@
-<div class="search-section mt-5">
+<div class="row mt-5">
+  <div class="col-8 offset-2">
+    <a class="btn bg-dark text-white btn-block btn-sm" data-toggle="collapse" href="#search-section" role="button"
+      aria-expanded="false" aria-controls="collapseExample">
+      Szűrési feltételek
+    </a>
+  </div>
+</div>
+<div class="search-section mt-3 collapse" id="search-section">
   <div class="row">
     <div class="col-8 offset-2 mb-3">
-      <label for="film-title"><b>Keresés a film címekben:</b></label>
-      <input id="film-title" type="text" class="form-control form-control-sm" (keyup)="onChangePhrase($event)">
+      <label for="film-title"><b>Tartalmazza a film címe:</b></label>
+      <input id="film-title" type="text" class="form-control form-control-sm">
     </div>
   </div>
   <div class="row mb-3">
@@ -19,13 +27,13 @@
     <div class="col-8 offset-2 mb-3">
       <label for="stars"><b>Értékelés:</b></label>
       <select class="form-control form-control-sm" id="stars">
-        <option>Mindegy</option>
-        <option>0 csillag - Nézhetetlen</option>
-        <option>1 csillag - Rossz</option>
-        <option>2 csillag - Gyenge</option>
-        <option>3 csillag - Átlagos</option>
-        <option>4 csillag - Jó</option>
-        <option>5 csillag - Zseniális</option>
+        <option value="-1">Mindegy</option>
+        <option value="0">0 csillag - Nézhetetlen</option>
+        <option value="1">1 csillag - Rossz</option>
+        <option value="2">2 csillag - Gyenge</option>
+        <option value="3">3 csillag - Átlagos</option>
+        <option value="4">4 csillag - Jó</option>
+        <option value="5">5 csillag - Zseniális</option>
       </select>
     </div>
   </div>
@@ -35,10 +43,17 @@
       <input id="film-genre" type="text" class="form-control form-control-sm">
     </div>
   </div>
+  <div class="row">
+    <div class="col-8 offset-2">
+      <button class="btn btn-primary btn-block btn-sm" (click)="onClickFilter()">
+        <i class="fa fa-filter"></i> Szűrés
+      </button>
+    </div>
+  </div>
 </div>
 <div class="card-container mt-4 d-flex flex-wrap justify-content-around col-10 offset-1">
   <app-film-card [film]="film"
-    *ngFor="let film of list$ | async | filter:phrase | slice:paginator.startHits:paginator.endHits">
+    *ngFor="let film of list$ | async | filter:filterInfo.filmTitle:filterInfo.filmYearFrom:filterInfo.filmYearTo:filterInfo.stars:filterInfo.filmGenre | slice:paginator.startHits:paginator.endHits">
   </app-film-card>
 </div>
 <div *ngIf="(list$ | async)?.length" class="container">
