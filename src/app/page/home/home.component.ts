@@ -12,7 +12,7 @@ import { PaginatorService } from 'src/app/service/paginator.service';
 export class HomeComponent implements OnInit {
 
   list$: BehaviorSubject<Film[]> = this.filmService.list$;
- 
+
   filterInfo: {
     filmTitle: string;
     filmYearFrom: number;
@@ -20,12 +20,12 @@ export class HomeComponent implements OnInit {
     stars: number;
     filmGenre: string;
   } = {
-    filmTitle: '',
-    filmYearFrom: 0,
-    filmYearTo: 0,
-    stars: -1,
-    filmGenre : ''
-  };
+      filmTitle: '',
+      filmYearFrom: 0,
+      filmYearTo: 0,
+      stars: -1,
+      filmGenre: ''
+    };
 
   constructor(
     private filmService: FilmService,
@@ -42,11 +42,15 @@ export class HomeComponent implements OnInit {
     const filmYearTo = Number((document.querySelector('#film-year-to') as HTMLInputElement).value);
     const stars = Number((document.querySelector('#stars') as HTMLInputElement).value);
     const filmGenre = (document.querySelector('#film-genre') as HTMLInputElement).value;
+    const searchSection = document.querySelector('#search-section');
+
     this.filterInfo.filmTitle = filmTitle;
     this.filterInfo.filmYearFrom = filmYearFrom;
     this.filterInfo.filmYearTo = filmYearTo;
     this.filterInfo.stars = stars;
     this.filterInfo.filmGenre = filmGenre;
+
+    searchSection?.classList.remove('show');
   }
- 
+
 }
