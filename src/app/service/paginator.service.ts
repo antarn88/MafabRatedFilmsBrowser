@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class PaginatorService {
 
   /* SET HITS PER PAGE */
-  hitsPerPage: number = 10;
+  hitsPerPage: number = 5;
   /* ============= */
 
   listLength: number = 0;

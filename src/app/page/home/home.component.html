@@ -1,7 +1,42 @@
-<div class="col-4 offset-4 my-5 search-bar">
-  <input type="text" class="form-control" placeholder="Keresés a film címekben" (keyup)="onChangePhrase($event)">
+<div class="search-section mt-5">
+  <div class="row">
+    <div class="col-8 offset-2 mb-3">
+      <label for="film-title"><b>Keresés a film címekben:</b></label>
+      <input id="film-title" type="text" class="form-control form-control-sm" (keyup)="onChangePhrase($event)">
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-4 offset-2">
+      <label for="film-year-from"><b>Évszám (-tól):</b></label>
+      <input id="film-year-from" type="number" class="form-control form-control-sm">
+    </div>
+    <div class="col-4">
+      <label for="film-year-to"><b>Évszám (-ig):</b></label>
+      <input id="film-year-to" type="number" class="form-control form-control-sm">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8 offset-2 mb-3">
+      <label for="stars"><b>Értékelés:</b></label>
+      <select class="form-control form-control-sm" id="stars">
+        <option>Mindegy</option>
+        <option>0 csillag - Nézhetetlen</option>
+        <option>1 csillag - Rossz</option>
+        <option>2 csillag - Gyenge</option>
+        <option>3 csillag - Átlagos</option>
+        <option>4 csillag - Jó</option>
+        <option>5 csillag - Zseniális</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8 offset-2 mb-3">
+      <label for="film-genre"><b>Stílus:</b></label>
+      <input id="film-genre" type="text" class="form-control form-control-sm">
+    </div>
+  </div>
 </div>
-<div class="card-container mt-5 d-flex flex-wrap justify-content-around col-10 offset-1">
+<div class="card-container mt-4 d-flex flex-wrap justify-content-around col-10 offset-1">
   <app-film-card [film]="film"
     *ngFor="let film of list$ | async | filter:phrase | slice:paginator.startHits:paginator.endHits">
   </app-film-card>
