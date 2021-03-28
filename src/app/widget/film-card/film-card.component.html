@@ -1,9 +1,9 @@
-<div class="card mb-4" style="width: 18rem;">
+<div class="card mb-3" style="width: 17rem;">
   <a href="{{ film.url }}" target="_blank">
     <img src="{{ film.poster }}" class="card-img-top" alt="Film poster">
   </a>
   <div class="card-body">
-    <h5 class="card-title">{{ film.name }} 
+    <h5 class="card-title">{{ film.name }}
       <span *ngIf="film.year !== 0">({{ film.year }})</span>
     </h5>
     <div class="film-stars">
@@ -16,6 +16,10 @@
     </div>
     <div class="genres mt-2">
       <span>{{ genres }}</span>
+    </div>
+    <div class="keywords mt-2" *ngIf="keywords">
+      <hr>
+      <span><b>Kulcsszavak: </b><small>{{ keywords }}</small></span>
     </div>
   </div>
 </div>

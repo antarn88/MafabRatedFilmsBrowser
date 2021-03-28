@@ -18,13 +18,15 @@ export class HomeComponent implements OnInit {
     filmYearFrom: number;
     filmYearTo: number;
     stars: number;
-    filmGenre: string;
+    filmGenres: string[];
+    keywords: string[];
   } = {
       filmTitle: '',
       filmYearFrom: 0,
       filmYearTo: 0,
       stars: -1,
-      filmGenre: ''
+      filmGenres: [],
+      keywords: []
     };
 
   constructor(
@@ -37,18 +39,20 @@ export class HomeComponent implements OnInit {
   }
 
   onClickFilter(): void {
-    const filmTitle = (document.querySelector('#film-title') as HTMLInputElement).value;
-    const filmYearFrom = Number((document.querySelector('#film-year-from') as HTMLInputElement).value);
-    const filmYearTo = Number((document.querySelector('#film-year-to') as HTMLInputElement).value);
+    const filmTitle = (document.querySelector('#film-title') as HTMLInputElement).value.trim();
+    const filmYearFrom = Number((document.querySelector('#film-year-from') as HTMLInputElement).value.trim());
+    const filmYearTo = Number((document.querySelector('#film-year-to') as HTMLInputElement).value.trim());
     const stars = Number((document.querySelector('#stars') as HTMLInputElement).value);
-    const filmGenre = (document.querySelector('#film-genre') as HTMLInputElement).value;
+    const filmGenres = (document.querySelector('#film-genres') as HTMLInputElement).value.trim().split(',');
+    const filmKeywords = (document.querySelector('#film-keywords') as HTMLInputElement).value.trim().split(',');
     const searchSection = document.querySelector('#search-section');
 
     this.filterInfo.filmTitle = filmTitle;
     this.filterInfo.filmYearFrom = filmYearFrom;
     this.filterInfo.filmYearTo = filmYearTo;
     this.filterInfo.stars = stars;
-    this.filterInfo.filmGenre = filmGenre;
+    this.filterInfo.filmGenres = filmGenres;
+    this.filterInfo.keywords = filmKeywords;
 
     searchSection?.classList.remove('show');
   }

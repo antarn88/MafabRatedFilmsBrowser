@@ -1,8 +1,8 @@
-<div class="row mt-5">
+<div class="row mt-3">
   <div class="col-8 offset-2">
-    <a class="btn bg-dark text-white btn-block btn-sm" data-toggle="collapse" href="#search-section" role="button"
+    <a class="text-center text-primary" data-toggle="collapse" href="#search-section" role="button"
       aria-expanded="false" aria-controls="collapseExample" id="advanced-filter-btn">
-      Szűrési feltételek
+      Szűrési feltételek lenyitása/becsukása
     </a>
   </div>
 </div>
@@ -34,13 +34,20 @@
         <option value="3">3 csillag - Átlagos</option>
         <option value="4">4 csillag - Jó</option>
         <option value="5">5 csillag - Zseniális</option>
+        <option value="45">4 vagy 5 csillag - Jó vagy Zseniális</option>
       </select>
     </div>
   </div>
   <div class="row">
     <div class="col-8 offset-2 mb-3">
-      <label for="film-genre"><b>Stílus:</b></label>
-      <input id="film-genre" type="text" class="form-control form-control-sm">
+      <label for="film-genres"><b>Stílus(ok):</b></label>
+      <input id="film-genres" type="text" class="form-control form-control-sm" title="Vesszővel elválasztva ÉS kapcsolattal">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8 offset-2 mb-3">
+      <label for="film-keywords"><b>Kulcsszavak:</b></label>
+      <input id="film-keywords" type="text" class="form-control form-control-sm" title="Vesszővel elválasztva VAGY kapcsolattal">
     </div>
   </div>
   <div class="row">
@@ -53,7 +60,7 @@
 </div>
 <div class="card-container mt-4 d-flex flex-wrap justify-content-around col-10 offset-1">
   <app-film-card [film]="film"
-    *ngFor="let film of list$ | async | filter:filterInfo.filmTitle:filterInfo.filmYearFrom:filterInfo.filmYearTo:filterInfo.stars:filterInfo.filmGenre | slice:paginator.startHits:paginator.endHits">
+    *ngFor="let film of list$ | async | filter:filterInfo.filmTitle:filterInfo.filmYearFrom:filterInfo.filmYearTo:filterInfo.stars:filterInfo.filmGenres:filterInfo.keywords | slice:paginator.startHits:paginator.endHits">
   </app-film-card>
 </div>
 <div *ngIf="(list$ | async)?.length" class="container">
