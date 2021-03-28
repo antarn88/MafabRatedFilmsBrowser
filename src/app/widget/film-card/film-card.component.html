@@ -1,6 +1,6 @@
-<div class="card mb-3" style="width: 17rem;">
+<div class="card mb-3" style="width: 17rem;" [hidden]="!loadedPoster">
   <a href="{{ film.url }}" target="_blank">
-    <img src="{{ film.poster }}" class="card-img-top" alt="Film poster">
+    <img src="{{ film.poster }}" class="card-img-top" alt="{{ film.name }} poszter" (load)="onLoadPoster()">
   </a>
   <div class="card-body">
     <h5 class="card-title">{{ film.name }}

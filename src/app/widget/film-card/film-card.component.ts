@@ -14,14 +14,19 @@ export class FilmCardComponent implements OnInit {
   genreArray: string[] = [];
   genres: string = '';
   keywords: string = '';
+  loadedPoster: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
     this.starsArray = new Array(this.film.stars);
     this.genreArray = this.film.genres;
-    this.genres = this.genreArray.join(", ");
-    this.keywords = this.film.keywords.join(", ");
+    this.genres = this.genreArray.join(', ');
+    this.keywords = this.film.keywords.join(', ');
+  }
+
+  onLoadPoster(): void {
+    this.loadedPoster = true;
   }
 
 }
