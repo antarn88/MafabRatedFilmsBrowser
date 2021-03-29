@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Film } from 'src/app/model/film';
 import { FilmService } from 'src/app/service/film.service';
@@ -9,7 +9,7 @@ import { PaginatorService } from 'src/app/service/paginator.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewChecked {
 
   list$: BehaviorSubject<Film[]> = this.filmService.list$;
 
@@ -31,13 +31,18 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private filmService: FilmService,
-    public paginator: PaginatorService
+    public paginator: PaginatorService,
+    private cdRef: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
     this.filmService.getAll();
     document.addEventListener('keydown', e => e.key === 'Escape' ?
       document.querySelector('#search-section')?.classList.remove('show') : null);
+  }
+
+  ngAfterViewChecked(): void {
+    this.cdRef.detectChanges();
   }
 
   onClickFilter(): void {

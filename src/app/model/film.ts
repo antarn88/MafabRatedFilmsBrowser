@@ -5,7 +5,6 @@ export class Film {
   stars: number = 0;
   url: string = '';
   poster: string = '';
-  description: string = '';
   keywords: string[] = [];
   genres: string[] = [];
 }
