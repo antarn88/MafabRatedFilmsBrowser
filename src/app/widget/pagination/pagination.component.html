@@ -1,5 +1,5 @@
 <h3 *ngIf="!paginator.listLength" class="text-center mt-5">Nincs megjeleníthető filmkártya!</h3>
-<ul class="pagination justify-content-center flex-wrap mb-5" [hidden]="!paginator.listLength">
+<ul class="pagination justify-content-center flex-wrap my-5" [hidden]="!paginator.listLength">
   <li class="page-item previous disabled mb-2" (click)="this.paginator.goPreviousPage($event)">
     <a class="page-link" aria-disabled="true">Előző</a>
   </li>
