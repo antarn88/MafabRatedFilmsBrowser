@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit, AfterViewChecked {
     filmYearTo: number;
     stars: number;
     filmGenres: string[];
+    filmExcludedGenres: string[],
     keywords: string[];
   } = {
       filmTitle: '',
@@ -26,6 +27,7 @@ export class HomeComponent implements OnInit, AfterViewChecked {
       filmYearTo: 0,
       stars: -1,
       filmGenres: [],
+      filmExcludedGenres: [],
       keywords: []
     };
 
@@ -51,12 +53,14 @@ export class HomeComponent implements OnInit, AfterViewChecked {
     const filmYearTo = Number((document.querySelector('#film-year-to') as HTMLInputElement).value.trim());
     const stars = Number((document.querySelector('#stars') as HTMLInputElement).value);
     const filmGenres = (document.querySelector('#film-genres') as HTMLInputElement).value.trim().split(',');
+    const filmExcludedGenres = (document.querySelector('#film-excluded-genres') as HTMLInputElement).value.trim().split(',');
     const filmKeywords = (document.querySelector('#film-keywords') as HTMLInputElement).value.trim().split(',');
     this.filterInfo.filmTitle = filmTitle;
     this.filterInfo.filmYearFrom = filmYearFrom;
     this.filterInfo.filmYearTo = filmYearTo;
     this.filterInfo.stars = stars;
     this.filterInfo.filmGenres = filmGenres;
+    this.filterInfo.filmExcludedGenres = filmExcludedGenres;
     this.filterInfo.keywords = filmKeywords;
   }
 }

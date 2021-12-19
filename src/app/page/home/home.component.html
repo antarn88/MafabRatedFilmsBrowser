@@ -6,63 +6,82 @@
       Szűrési feltételek lenyitása/becsukása</a>
   </div>
 </div>
-<div class="search-section mt-3 collapse" id="search-section">
-  <div class="row">
-    <div class="col-8 offset-2 mb-3">
-      <label for="film-title"><b>Tartalmazza a film címe:</b></label>
-      <input id="film-title" type="text" class="form-control form-control-sm" (keydown.enter)="onClickFilter()">
-    </div>
-  </div>
-  <div class="row mb-3">
-    <div class="col-4 offset-2">
-      <label for="film-year-from"><b>Évszám (-tól):</b></label>
-      <input id="film-year-from" type="number" class="form-control form-control-sm" (keydown.enter)="onClickFilter()">
-    </div>
-    <div class="col-4">
-      <label for="film-year-to"><b>Évszám (-ig):</b></label>
-      <input id="film-year-to" type="number" class="form-control form-control-sm" (keydown.enter)="onClickFilter()">
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-8 offset-2 mb-3">
-      <label for="stars"><b>Értékelés:</b></label>
-      <select class="form-control form-control-sm" id="stars">
-        <option value="-1">Mindegy</option>
-        <option value="0">0 csillag - Nézhetetlen</option>
-        <option value="1">1 csillag - Rossz</option>
-        <option value="2">2 csillag - Gyenge</option>
-        <option value="3">3 csillag - Átlagos</option>
-        <option value="4">4 csillag - Jó</option>
-        <option value="5">5 csillag - Zseniális</option>
-        <option value="45">4 vagy 5 csillag - Jó vagy Zseniális</option>
-      </select>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-8 offset-2 mb-3">
-      <label for="film-genres"><b>Stílus(ok):</b></label>
-      <input id="film-genres" type="text" class="form-control form-control-sm"
-        title="Vesszővel elválasztva ÉS kapcsolattal" (keydown.enter)="onClickFilter()">
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-8 offset-2 mb-3">
-      <label for="film-keywords"><b>Kulcsszavak:</b></label>
-      <input id="film-keywords" type="text" class="form-control form-control-sm"
-        title="Vesszővel elválasztva VAGY kapcsolattal" (keydown.enter)="onClickFilter()">
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-8 offset-2 mb-3">
-      <button class="btn btn-primary btn-block btn-sm" (click)="onClickFilter()">
-        <i class="fa fa-filter"></i> Szűrés
-      </button>
+
+<div class="row">
+  <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 mt-4 search-section collapse" id="search-section">
+    <div class="card text-dark bg-light border-light shadow rounded">
+      <div class="card-body">
+
+        <div>
+          <div class="row">
+            <div class="col-12 mb-3">
+              <label for="film-title"><b>Tartalmazza a film címe:</b></label>
+              <input id="film-title" type="text" class="form-control form-control-sm" (keydown.enter)="onClickFilter()">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-6">
+              <label for="film-year-from"><b>Évszám (-tól):</b></label>
+              <input id="film-year-from" type="number" class="form-control form-control-sm" (keydown.enter)="onClickFilter()">
+            </div>
+            <div class="col-6">
+              <label for="film-year-to"><b>Évszám (-ig):</b></label>
+              <input id="film-year-to" type="number" class="form-control form-control-sm" (keydown.enter)="onClickFilter()">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 mb-3">
+              <label for="stars"><b>Értékelés:</b></label>
+              <select class="form-control form-control-sm" id="stars">
+                <option value="-1">Mindegy</option>
+                <option value="0">0 csillag - Nézhetetlen</option>
+                <option value="1">1 csillag - Rossz</option>
+                <option value="2">2 csillag - Gyenge</option>
+                <option value="3">3 csillag - Átlagos</option>
+                <option value="4">4 csillag - Jó</option>
+                <option value="5">5 csillag - Zseniális</option>
+                <option value="45">4 vagy 5 csillag - Jó vagy Zseniális</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 mb-3">
+              <label for="film-genres"><b>Stílus(ok):</b></label>
+              <input id="film-genres" type="text" class="form-control form-control-sm"
+                title="Vesszővel elválasztva ÉS kapcsolattal" (keydown.enter)="onClickFilter()">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 mb-3">
+              <label for="film-excluded-genres"><b>Kizárt stílus(ok):</b></label>
+              <input id="film-excluded-genres" type="text" class="form-control form-control-sm"
+                title="Vesszővel elválasztva VAGY kapcsolattal" (keydown.enter)="onClickFilter()">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 mb-3">
+              <label for="film-keywords"><b>Kulcsszavak:</b></label>
+              <input id="film-keywords" type="text" class="form-control form-control-sm"
+                title="Vesszővel elválasztva VAGY kapcsolattal" (keydown.enter)="onClickFilter()">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 text-center">
+              <button class="btn btn-primary" (click)="onClickFilter()"><i class="fa fa-filter"></i> Szűrés</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 </div>
+
 <div class="card-container mt-4 d-flex flex-wrap justify-content-around col-10 offset-1">
   <app-film-card [film]="film"
-    *ngFor="let film of list$ | async | filter:filterInfo.filmTitle:filterInfo.filmYearFrom:filterInfo.filmYearTo:filterInfo.stars:filterInfo.filmGenres:filterInfo.keywords | slice:paginator.startHits:paginator.endHits">
+    *ngFor="let film of list$ | async | filter:filterInfo.filmTitle:filterInfo.filmYearFrom:filterInfo.filmYearTo:filterInfo.stars:filterInfo.filmGenres:filterInfo.filmExcludedGenres:filterInfo.keywords | slice:paginator.startHits:paginator.endHits">
   </app-film-card>
 </div>
 <div *ngIf="(list$ | async)?.length" class="container">
