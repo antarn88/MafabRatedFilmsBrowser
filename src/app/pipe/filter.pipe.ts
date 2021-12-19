@@ -39,10 +39,8 @@ export class FilterPipe implements PipeTransform {
 
         if (filmExcludedGenres) {
           const itemGenres = item.genres.map((genre: string) => genre.toLowerCase());
-          const expectedGenres = filmGenres.map(genre => genre.toLowerCase().trim());
           const excludedGenres = filmExcludedGenres.map(genre => genre.toLowerCase().trim());
-          filmExcludedMatch = expectedGenres.every(genre => itemGenres.indexOf(genre) >= 0) &&
-            !excludedGenres.some(genre => itemGenres.indexOf(genre) >= 0);
+          filmExcludedMatch = !excludedGenres.some(genre => itemGenres.indexOf(genre) >= 0);
         }
 
         if (filmKeywords.length) {
