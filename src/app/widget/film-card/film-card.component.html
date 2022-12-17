@@ -11,12 +11,14 @@
       {{ film.name }}
       <span *ngIf="film.year !== 0">({{ film.year }})</span>
     </h5>
-    <span
+    <!-- <span
       class="film-stars"
       [tooltip]="tooltipText"
       [hide-delay]="0"
       placement="right"
-    >
+    > -->
+    <!-- TODO inkompatibilis csomag miatt a tooltip eltávolítva -->
+    <span class="film-stars">
       <i class="fa fa-thumbs-down stars-0" *ngIf="starsArray.length === 0"></i>
       <span *ngFor="let stars of starsArray">
         <i

@@ -2,8 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
-import { TooltipModule } from 'ng2-tooltip-directive';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './widget/navbar/navbar.component';
@@ -25,7 +23,6 @@ import { FilterPipe } from './pipe/filter.pipe';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    TooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
