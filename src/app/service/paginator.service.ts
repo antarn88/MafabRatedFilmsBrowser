@@ -6,17 +6,17 @@ import { Injectable } from '@angular/core';
 export class PaginatorService {
 
   /* SET HITS PER PAGE */
-  hitsPerPage: number = 5;
+  hitsPerPage = 5;
   /* ============= */
 
-  listLength: number = 0;
-  startHits: number = 0;
-  endHits: number = 0;
-  firstPage: number = 1;
-  lastPage: number = 1;
-  initialPageCount: number = 0;
-  currentPage: number = 0;
-  pageStart: number = 0;
+  listLength = 0;
+  startHits = 0;
+  endHits = 0;
+  firstPage = 1;
+  lastPage = 1;
+  initialPageCount = 0;
+  currentPage = 0;
+  pageStart = 0;
   pages: number[] = [];
 
   constructor() {

@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { Film } from '../model/film';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FilmService {
-  
-  serverUrl: string = 'http://localhost:3000/films';
+  serverUrl = 'http://localhost:3000/films';
   list$: BehaviorSubject<Film[]> = new BehaviorSubject<Film[]>([]);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getAll(): void {
     this.list$.next([]);
-    this.http.get<Film[]>(this.serverUrl).subscribe(films => this.list$.next(films));
+    this.http
+      .get<Film[]>(this.serverUrl)
+      .subscribe((films) => this.list$.next(films));
   }
-  
 }

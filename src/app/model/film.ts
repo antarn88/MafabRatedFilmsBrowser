@@ -1,10 +1,10 @@
 export class Film {
-  id: number = 0;
-  name: string = '';
-  year: number = 0;
-  stars: number = 0;
-  url: string = '';
-  poster: string = '';
+  id = 0;
+  name = '';
+  year = 0;
+  stars = 0;
+  url = '';
+  poster = '';
   keywords: string[] = [];
   genres: string[] = [];
 }

@@ -12,9 +12,9 @@ export class FilmCardComponent implements OnInit {
   @Input() film = new Film();
   starsArray: any[] = [];
   genreArray: string[] = [];
-  genres: string = '';
-  keywords: string = '';
-  tooltipText: string = '';
+  genres = '';
+  keywords = '';
+  tooltipText = '';
 
   constructor() { }
 
