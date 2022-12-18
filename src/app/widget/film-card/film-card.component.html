@@ -1,20 +1,13 @@
 <div class="card mb-3 h-100" style="width: 17rem">
-  <a href="{{ film.url }}" target="_blank">
-    <img src="{{ film.poster }}" class="card-img-top" alt="{{ film.name }} poszter" />
+  <a [href]="film.url" target="_blank">
+    <img [src]="film.poster" class="card-img-top" alt="{{ film.name }} poszter" />
   </a>
   <div class="card-body">
     <h5 class="card-title">
       {{ film.name }}
       <span *ngIf="film.year !== 0">({{ film.year }})</span>
     </h5>
-    <!-- <span
-      class="film-stars"
-      [tooltip]="tooltipText"
-      [hide-delay]="0"
-      placement="right"
-    > -->
-    <!-- TODO inkompatibilis csomag miatt a tooltip eltávolítva -->
-    <span class="film-stars">
+    <span class="film-stars" [tooltip]="tooltipText" [hide-delay]="0" placement="right">
       <i class="fa fa-thumbs-down stars-0" *ngIf="starsArray.length === 0"></i>
       <span *ngFor="let stars of starsArray">
         <i
@@ -32,9 +25,9 @@
     </div>
     <div class="keywords mt-2" *ngIf="keywords">
       <hr />
-      <span
-        ><b>Kulcsszavak: </b><small>{{ keywords }}</small></span
-      >
+      <span>
+        <b>Kulcsszavak: </b><small>{{ keywords }}</small>
+      </span>
     </div>
   </div>
 </div>
