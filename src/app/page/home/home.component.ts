@@ -7,10 +7,9 @@ import { PaginatorService } from 'src/app/service/paginator.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, AfterViewChecked {
-
   list$: BehaviorSubject<Film[]> = this.filmService.list$;
 
   filterInfo: {
@@ -19,28 +18,25 @@ export class HomeComponent implements OnInit, AfterViewChecked {
     filmYearTo: number;
     stars: number;
     filmGenres: string[];
-    filmExcludedGenres: string[],
+    filmExcludedGenres: string[];
     keywords: string[];
   } = {
-      filmTitle: '',
-      filmYearFrom: 0,
-      filmYearTo: 0,
-      stars: -1,
-      filmGenres: [],
-      filmExcludedGenres: [],
-      keywords: []
-    };
+    filmTitle: '',
+    filmYearFrom: 0,
+    filmYearTo: 0,
+    stars: -1,
+    filmGenres: [],
+    filmExcludedGenres: [],
+    keywords: [],
+  };
 
-  constructor(
-    private filmService: FilmService,
-    public paginator: PaginatorService,
-    private cdRef: ChangeDetectorRef
-  ) { }
+  constructor(private filmService: FilmService, public paginator: PaginatorService, private cdRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.filmService.getAll();
-    document.addEventListener('keydown', e => e.key === 'Escape' ?
-      document.querySelector('#search-section')?.classList.remove('show') : null);
+    document.addEventListener('keydown', (e) =>
+      e.key === 'Escape' ? document.querySelector('#search-section')?.classList.remove('show') : null
+    );
   }
 
   ngAfterViewChecked(): void {

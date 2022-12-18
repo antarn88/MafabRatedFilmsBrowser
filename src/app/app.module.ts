@@ -11,20 +11,9 @@ import { PaginationComponent } from './widget/pagination/pagination.component';
 import { FilterPipe } from './pipe/filter.pipe';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    HomeComponent,
-    FilmCardComponent,
-    PaginationComponent,
-    FilterPipe
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-  ],
+  declarations: [AppComponent, NavbarComponent, HomeComponent, FilmCardComponent, PaginationComponent, FilterPipe],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

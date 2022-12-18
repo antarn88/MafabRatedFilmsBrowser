@@ -14,8 +14,6 @@ export class FilmService {
 
   getAll(): void {
     this.list$.next([]);
-    this.http
-      .get<Film[]>(this.serverUrl)
-      .subscribe((films) => this.list$.next(films));
+    this.http.get<Film[]>(this.serverUrl).subscribe((films) => this.list$.next(films));
   }
 }

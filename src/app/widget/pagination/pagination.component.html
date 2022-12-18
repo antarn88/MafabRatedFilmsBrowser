@@ -3,8 +3,12 @@
   <li class="page-item previous disabled mb-2" (click)="this.paginator.goPreviousPage($event)">
     <a class="page-link" aria-disabled="true">Előző</a>
   </li>
-  <li class="page-item page mb-2" *ngFor="let page of this.paginator.pages"
-    (click)="this.paginator.onClickListItem(page)" [ngClass]="page === 1 ? 'active' : ''">
+  <li
+    class="page-item page mb-2"
+    *ngFor="let page of this.paginator.pages"
+    (click)="this.paginator.onClickListItem(page)"
+    [ngClass]="page === 1 ? 'active' : ''"
+  >
     <a class="page-link">{{ page }}</a>
   </li>
   <li class="page-item next mb-2" (click)="this.paginator.goNextPage($event)">

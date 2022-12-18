@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PaginatorService {
-
   /* SET HITS PER PAGE */
   hitsPerPage = 5;
   /* ============= */
@@ -36,7 +35,7 @@ export class PaginatorService {
 
   setNthPageActive(page: number): void {
     const allPages = Array.from(document.querySelectorAll('li.page'));
-    allPages.map(pageLiItem => {
+    allPages.map((pageLiItem) => {
       const aTextContent = pageLiItem.querySelector('a')?.textContent;
       pageLiItem.classList.remove('active');
       String(page) === aTextContent ? pageLiItem.classList.add('active') : null;
@@ -44,7 +43,7 @@ export class PaginatorService {
   }
 
   removeActiveClassFromFirstPage(): void {
-    if (this.pages.find(page => page === 1) && this.currentPage !== 1) {
+    if (this.pages.find((page) => page === 1) && this.currentPage !== 1) {
       setTimeout(() => {
         this.setNthPageActive(this.currentPage);
       }, 50);
@@ -53,7 +52,7 @@ export class PaginatorService {
 
   renderPaginator(): void {
     this.pages = [];
-    this.pageStart = (this.currentPage - 5) < 1 ? 1 : (this.currentPage - 5);
+    this.pageStart = this.currentPage - 5 < 1 ? 1 : this.currentPage - 5;
     for (let i = this.pageStart; i < this.pageStart + 10 && i <= this.lastPage; i++) {
       this.pages.push(i);
     }
@@ -101,14 +100,13 @@ export class PaginatorService {
   }
 
   setPreviousAndNextButtonState(): void {
-    const previousButton = document.querySelector(".page-item.previous");
-    const nextButton = document.querySelector(".page-item.next");
+    const previousButton = document.querySelector('.page-item.previous');
+    const nextButton = document.querySelector('.page-item.next');
 
     if (this.firstPage === this.lastPage) {
       previousButton?.classList.add('disabled');
       nextButton?.classList.add('disabled');
-    }
-    else {
+    } else {
       previousButton?.classList.remove('disabled');
       nextButton?.classList.remove('disabled');
     }
